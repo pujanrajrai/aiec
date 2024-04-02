@@ -64,9 +64,9 @@ def contactus(request):
 
 
 def applyasstudent(request):
-    form = ApplyAsAgentForm()
+    form = ApplyAsStudentForm()
     if request.method == 'POST':
-        form = ApplyAsAgentForm(request.POST)
+        form = ApplyAsStudentForm(request.POST)
         if form.is_valid():
             # Save the form data to the database
             form.save()
