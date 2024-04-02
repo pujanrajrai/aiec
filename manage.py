@@ -3,7 +3,7 @@
 import os
 import sys
 from decouple import config
-settings_key = config('settings_key', default='core.settings.local')
+settings_key = config('settings_key', default='core.settings.prod')
 
 
 def main():
