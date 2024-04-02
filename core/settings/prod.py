@@ -1,7 +1,3 @@
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 from .base import *
 from decouple import config
 import os
@@ -18,7 +14,7 @@ DEBUG = False
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(
-    BASE_DIR, "/home/pujanraj/travelhouseusa.com/media/")
+    BASE_DIR, "/home/pujanraj/aarav.com/media/")
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
