@@ -14,7 +14,7 @@ DEBUG = False
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(
-    BASE_DIR, "/home/baideshi/aiec/aarav.com/")
+    BASE_DIR, "/home/baideshi/aiec/aarav.com/media/")
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
