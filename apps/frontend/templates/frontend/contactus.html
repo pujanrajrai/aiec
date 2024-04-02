@@ -1,0 +1,98 @@
+{% extends "frontend/base.html" %}
+{% load static %}
+
+{% block body %}
+  
+
+<section id="zero">
+    <div class="carousel-item active" style="background-image: url({% static 'assets/img/carosel-img/contact-us.jpeg' %}); background-size: cover; height: auto;">
+      <div class="carousel-container">
+        <div class="container">
+          <h2 class="animate__animated animate__fadeInDown study">Contact Us</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div>
+          <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7066.64821068967!2d85.34633!3d27.676376!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb199e1d41f107%3A0x26ec80cd82620c21!2sAIEC%20PVT%20LTD!5e0!3m2!1sen!2sus!4v1710313317760!5m2!1sen!2sus" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="row mt-5">
+
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>Near at RBB Bank, Koteshwor, Kathmandu, Nepal</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>info@aarav.edu.np</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>+977 9807730227</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+            <form method="post" role="form" class="php-email-form">
+                {% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+                {% csrf_token %}
+                {% comment %} <form method="post" role="form" style="width: 100%; background: #fff;"> {% endcomment %}
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  {{form.name}}
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                    {{form.phone_number}}
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                {{form.email}}
+              </div>
+              <div class="form-group mt-3">
+                {{form.subject}}
+              </div>
+              <div class="form-group mt-3">
+                {{form.message}}
+              </div>
+              <div class="my-3">
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+{% endblock body %}

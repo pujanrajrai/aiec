@@ -1,0 +1,100 @@
+{% extends "frontend/base.html" %}
+{% load static %}
+
+{%block body%}
+
+
+<section id="zero">
+    <div class="carousel-item active" style="background-image: url({% static 'assets/img/carosel-img/apply-students.png' %}); background-size: cover; height: auto;">
+      <div class="carousel-container">
+        <div class="container">
+          <h2 class="animate__animated animate__fadeInDown study">Apply as Student</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+
+        <section id="mission" class="mission">
+          <div class="container" style="margin-top: 50px;">
+            <div class="section-header">
+              <h2 style="font-weight: 700;
+              font-size: 42px;
+              line-height: 60px; margin-bottom: 40px;">Please Fill Up The Form Below</h2>
+            </div>
+
+          <div class="row" style="text-align: justify;">
+            <div class="col-xl-12 col-md-12 d-flex align-items-stretch" >
+              <div class="icon-box">
+                <form class="row g-3" method="post">
+                    {% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+                    {% csrf_token %}
+                    <div class="col-md-8">
+                        <label for="inputName5" class="form-label">Full Name</label>
+                        {{ form.full_name }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPhoneNumber" class="form-label">Phone Number</label>
+                        {{ form.phone_number }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputEmail" class="form-label">Email Address</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputDateOfBirth" class="form-label">Date of Birth</label>
+                        {{ form.date_of_birth }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputFaculty" class="form-label">Faculty</label>
+                        {{ form.faculty }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPassOutYear" class="form-label">Pass out Year</label>
+                        {{ form.pass_out_year }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPercentage" class="form-label">Percentage</label>
+                        {{ form.percentage }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputApplyForCountry" class="form-label">Apply For (Country)</label>
+                        {{ form.apply_for_country }}
+                    </div>
+                    <div class="col-md-8">
+                        <label for="inputEnglishProficiencyTest" class="form-label">English Proficiency Test</label>
+                        {{ form.english_proficiency_test }}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputScore" class="form-label">Score</label>
+                        {{ form.score }}
+                    </div>
+                    <div class="col-md-8">
+                        <label for="inputRemarks" class="form-label">Remarks</label>
+                        {{ form.remarks }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </div>
+                </form>
+                
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+  </main><!-- End #main -->
+
+{%endblock%}

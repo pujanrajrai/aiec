@@ -1,0 +1,198 @@
+{%extends 'frontend/base.html'%}
+{%load static%}
+{% block body %}
+
+<!-- ======= Hero Section Carasouel======= -->
+<section id="hero">
+    <div id="heroCarousel" data-bs-interval="2500" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+        <div class="carousel-inner" role="listbox">
+            {% for study in studies%}
+            <!-- Slide 1 -->
+            <div class="carousel-item {% if forloop.counter == 1 %} active {%endif%}"
+                style="background-image: url({{study.image.url}})">
+                <div class="carousel-container">
+                    <div class="container">
+                        <h2 class="animate__animated animate__fadeInDown study">{{study.title|safe}}</h2>
+                        <p class="animate__animated animate__fadeInUp">{{study.quoatation}}</p>
+                        <a href="{% url 'frontend:title' study.pk %}"
+                            class="btn-get-started animate__animated animate__fadeInUp scrollto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+    </div>
+</section>
+<!-- End Hero -->
+
+
+
+
+<main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+
+            <div class="row content">
+                <div class="col-lg-6 align-items-center d-flex">
+                    <img src="{% static 'assets/img/aboutus.jpeg' %}" class="mx-auto d-block" style="max-width: 100%;">
+                </div>
+
+                <div class="col-lg-6 pt-4 pt-lg-0" style="text-align: justify;">
+                    <h2 class="align-items-center d-flex">ABOUT AIEC</h2>
+                    <p>
+                        Aarav International Education Consultancy Pvt. Ltd. (AIEC) trading as AIEC is one of the leading
+                        education and career consultants in Nepal which aims to support Nepalese students to access the
+                        globally recognized degrees on abroad.
+                        It is established by the certified & qualified counselors with the decades long industry
+                        experience in the student recruitment process for the different countries like Australia, Japan,
+                        New Zealand, USA, Canada, UK, and Europe.
+                        We also prepare students to get the required scores in different tests like IELTS, GRE, GMAT,
+                        SAT, TOEFL, OET and Japanese Language with the well-equipped classes, best instructors & mock
+                        tests.
+                    </p>
+
+                    <p>
+                        We do student, dependent & visitor visas and we also support the students with the internship
+                        placements on abroad and required part-time job trainings.
+                        We do support for consultation, admission, documentation, interview & visa.
+                    </p>
+                    <div>
+                        <a href="{% url 'frontend:aboutus' %}"
+                            style="cursor: pointer; background:#02044C;padding:10px;color:white;">
+                            Learn more ...
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- End About Section -->
+
+    <!-- ======= Explore Study ======= -->
+
+    <section id="explore-study" class="explore-study pt-0">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2 style="font-weight: 700;
+            font-size: 42px;
+            line-height: 60px; margin-bottom: 40px;">Explore Your Study Abroad Options</h2>
+
+            </div>
+
+            <div class="row gy-4" style="text-align: justify;">
+                {% for study in studies %}
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-img">
+                            {% if study.secondary_image %}<img src="{{study.secondary_image.url}}" alt=""
+                                class="img-fluid">{%endif%}
+
+                        </div>
+                        <h3><a href="#" class="stretched-link">{{study.title|safe}}</a></h3>
+                        <p>
+                            {{ study.description|truncatewords_html:30|striptags|safe }}
+                        </p>
+                    </div>
+                </div><!-- End Card Item -->
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= Services Section ======= -->
+    <section id="clients" class="clients section-bg">
+        <span style="font-weight: 700;
+    font-size: 42px;
+    line-height: 60px;">Our Services</span>
+    </section>
+    <section id="services" class="services">
+        <div class="container">
+            <div class="row" style="text-align: justify;">
+                {% for service in services %}
+                <div class="col-md-6">
+                    <div class="icon-box">
+                        <img src="{{service.secondary_image.url}}" alt="Icon">
+                        <h4><a href="{% url 'frontend:title' service.pk%}">{{service.title}}</a></h4>
+                        <p>{{service.quoatation}}
+                        </p>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </section>
+    <!-- ======= Our Partners Section ======= -->
+    <section id="partners" class="partners ">
+
+        <div class="container">
+
+            <div class="section-header">
+                <h2 style="font-weight: 700;
+            font-size: 42px;
+            line-height: 60px; margin-bottom: 40px;">Our Partners</h2>
+                </header>
+                <div class="partners-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+                        {% for partner in partners %}
+                        <div class="swiper-slide"><img src="{{partner.image.url}}" class="img-fluid" alt="">
+                        </div>
+                        {%endfor%}
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+    </section>
+    <!-- End Our Partner Section -->
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="font-weight: 700;
+            font-size: 42px;
+            line-height: 60px; margin-bottom: 40px;">Sucess Stories of Our Students</h2>
+            </div>
+
+
+            <div class="testimonials-slider swiper">
+                <div class="swiper-wrapper" style="text-align: center;">
+                    {%for story in stories%}
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            {{story.description|safe}}
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            <h3>{{story.title}}</h3>
+                            <h4>{{story.quoatation}}</h4>
+                        </div>
+                    </div><!-- End testimonial item -->
+                    {%endfor%}
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Testimonials Section -->
+</main>
+
+<!-- End Services Section -->
+{%endblock%}

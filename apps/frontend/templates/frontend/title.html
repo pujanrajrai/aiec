@@ -1,0 +1,67 @@
+{%extends 'frontend/base.html'%}
+{%load static%}
+{%block body%}
+<link href="{% static 'django_ckeditor_5/dist/styles.css' %}" type="text/css" media="all" rel="stylesheet">
+<script src="{% static 'django_ckeditor_5/dist/bundle.js' %}"></script>
+<section id="zero">
+    <div class="carousel-item active"
+      style="background-image: url({{title.image.url}}); background-size: cover; height: auto;">
+      <div class="carousel-container">
+        <div class="container">
+          <h2 class="animate__animated animate__fadeInDown">{{title.title|safe}}</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<main id="main">
+    <!-- ======= Student Screening ======= -->
+    <section id="student-screening" class="student-screening">
+      <div class="container">
+        <div class="row content">
+          <div class="study ck ck-content">
+            <p>
+                {{title.description|safe}}
+              
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- End Student Screening Section -->
+    {% if title.category.name == "services" %}
+
+    <!-- ======= Services Section ======= -->
+    <section id="clients" class="clients section-bg">
+      <span style="font-weight: 700;
+            font-size: 42px;
+            line-height: 60px;">Other Services</span>
+    </section>
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="row" style="text-align: justify;">
+            {% for service in services %}
+            {% if service != title %}
+                <div class="col-md-6">
+                    <div class="icon-box">
+                        <img src="{{service.secondary_image.url}}" alt="Icon">
+                        <h4><a href="{% url 'frontend:title' service.pk%}">{{service.title}}</a></h4>
+                        <p>{{service.quoatation}}
+                        </p>
+                    </div>
+                </div>
+                {%endif%}
+                {%endfor%}
+          
+        </div>
+      </div>
+    </section>
+    {%endif%}
+    <!-- End Services Section -->
+
+
+
+
+  </main><!-- End #main -->
+{%endblock%}

@@ -1,0 +1,89 @@
+{% extends 'datatable_base.html' %}
+{% load static %}
+{% block title %}Student Applications{% endblock %}
+{% block pagetitle %}Student Applications{% endblock %}
+{% block addbutton %}
+{% endblock %}
+{% block table %}
+    <div class="box-content">
+        <div class="col-md-12 mt-5">
+            <div class="tab">
+                <a href="{% url 'admindash:pages:applyasstudent:list' %}?search=unread" class="{% if active_tab == 'unread' %}active{% endif %}">
+                    Unread
+                </a>
+                <a href="{% url 'admindash:pages:applyasstudent:list' %}?search=read" class="{% if active_tab == 'read' %}active{% endif %}">
+                    Read
+                </a>
+            </div>
+            <!-- /.dropdown js__dropdown -->
+            <div class="table-responsive">
+                <table id="example" class="display compact nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>S.N</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Date of Birth</th>
+                            <th>Faculty</th>
+                            <th>Pass out Year</th>
+                            <th>Percentage</th>
+                            <th>Apply For (Country)</th>
+                            <th>English Proficiency Test</th>
+                            <th>Score</th>
+                            <th>Remarks</th>
+                            <th>Created Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>S.N</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Date of Birth</th>
+                            <th>Faculty</th>
+                            <th>Pass out Year</th>
+                            <th>Percentage</th>
+                            <th>Apply For (Country)</th>
+                            <th>English Proficiency Test</th>
+                            <th>Score</th>
+                            <th>Remarks</th>
+                            <th>Created Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for application in applications %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ application.full_name }}</td>
+                                <td>{{ application.email }}</td>
+                                <td>{{ application.phone_number }}</td>
+                                <td>{{ application.date_of_birth }}</td>
+                                <td>{{ application.faculty }}</td>
+                                <td>{{ application.pass_out_year }}</td>
+                                <td>{{ application.percentage }}</td>
+                                <td>{{ application.apply_for_country }}</td>
+                                <td>{{ application.english_proficiency_test }}</td>
+                                <td>{{ application.score }}</td>
+                                <td>{{ application.remarks }}</td>
+                                <td>{{ application.create_date }}</td>
+                                <td>
+                                    {% if active_tab != "read" %}
+                                    <form method="post" action="{% url 'admindash:pages:applyasstudent:markasread' %}" onsubmit="return confirm('Are you sure you want to Mark As Read?')">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="pk" value="{{ application.pk }}">
+                                        <button type="submit" class="btn btn-sm btn-danger">Mark As Read</button>
+                                    </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

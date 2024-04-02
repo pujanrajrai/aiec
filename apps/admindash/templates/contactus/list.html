@@ -1,0 +1,75 @@
+{% extends 'datatable_base.html' %}
+{% load static %}
+{% block title %}Conatct{% endblock %}
+{% block pagetitle %}Conatct{% endblock %}
+{% block addbutton %}
+{% endblock %}
+{% block table %}
+    <div class="box-content">
+        
+        <div class="col-md-12 mt-5">
+            <div class="tab">
+                <a href="{% url 'admindash:pages:contactus:list' %}?search=unread" class="{% if active_tab == 'unread' %}active{% endif %}">
+                    Unread
+                </a>
+                <a href="{% url 'admindash:pages:contactus:list' %}?search=read" class="{% if active_tab == 'read' %}active{% endif %}">
+                    Read
+                </a>
+               
+                
+                
+            </div>
+            <!-- /.dropdown js__dropdown -->
+            <div class="table-responsive">
+                <table id="example" class="display compact nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>S.N</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Created Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                    <tfoot>
+                    <tr>
+                        <th>S.N</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Created Date</th>
+                        <th>Action</th>
+                    </tr>
+                    </tfoot>
+                <tbody>
+                    {% for contact in conatcts %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ contact.name }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.phone_number }}</td>
+                            <td>{{ contact.subject }}</td>
+                            <td>{{ contact.message }}</td>
+                            <td>{{ contact.created_date }}</td>
+                            <td>
+                                {% if active_tab != "read"%}
+                                <form method="post" action="{% url 'admindash:pages:contactus:markasread'%}" onsubmit="return confirm('Are you sure you want to Mark As Read?')">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="pk" value="{{contact.pk}}">
+                                    <button type="submit" class="btn btn-sm btn-danger">Mark As Read</button>
+                                  </form>
+                                  {%endif%}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
