@@ -14,13 +14,13 @@ DEBUG = False
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(
-    BASE_DIR, "/home/baideshi/aarav.com/media/")
+    BASE_DIR, "/home/baideshi/aarav.edu.np/media/")
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, "/home/baideshi/aiec/aarav.com/")
+STATIC_ROOT = os.path.join(BASE_DIR, "/home/baideshi/aiec/aarav.edu.np/")
 
 
 ALLOWED_HOSTS = [
