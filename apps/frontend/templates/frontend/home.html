@@ -70,8 +70,8 @@
                     </p>
                     <div>
                         <a href="{% url 'frontend:aboutus' %}"
-                            style="cursor: pointer; background:#02044C;padding:10px;color:white;">
-                            Learn more ...
+                            style="cursor: pointer; background:#02044C;padding:10px;color:white; border-radius: 3px;font-size: 14px;">
+                            Learn more
                         </a>
                     </div>
 
@@ -105,9 +105,11 @@
                                 class="img-fluid">{%endif%}
 
                         </div>
-                        <h3><a href="#" class="stretched-link">{{study.title|safe}}</a></h3>
+                        <h3><a href="{% url 'frontend:title' study.pk %}"
+                                class="stretched-link">{{study.title|safe}}</a></h3>
                         <p>
-                            {{ study.description|truncatewords_html:30|striptags|safe }}
+                            <a href="{% url 'frontend:title' study.pk %}" style="color: black;">
+                                {{study.description|truncatewords_html:30|striptags|safe }}</a>
                         </p>
                     </div>
                 </div><!-- End Card Item -->
