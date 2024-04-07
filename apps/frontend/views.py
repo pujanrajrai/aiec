@@ -13,19 +13,31 @@ def home(request):
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
-        "testpreparations": Title.objects.filter(category__name="testpreparations")
+        "testpreparations": Title.objects.filter(category__name="testpreparations"),
+        "active": "home"
     }
     return render(request, 'frontend/home.html', context)
 
 
 def title(request, pk):
+    title = Title.objects.get(pk=pk)
+    active = "null"
+    if title.category.name == "testpreparations":
+        active = "testpreparations"
+    elif title.category.name == "studyabroad":
+        active = "studyabroad"
+
+    elif title.category.name == "services":
+        active = "services"
+
     context = {
         "studies": Title.objects.filter(category__name="studyabroad"),
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
         "testpreparations": Title.objects.filter(category__name="testpreparations"),
-        "title": Title.objects.get(pk=pk)
+        "title": title,
+        "active": active
     }
     return render(request, 'frontend/title.html', context)
 
@@ -36,7 +48,9 @@ def aboutus(request):
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
-        "testpreparations": Title.objects.filter(category__name="testpreparations")
+        "testpreparations": Title.objects.filter(category__name="testpreparations"),
+        "active": "aboutus"
+
     }
     return render(request, 'frontend/aboutus.html', context)
 
@@ -58,7 +72,8 @@ def contactus(request):
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
-        "testpreparations": Title.objects.filter(category__name="testpreparations")
+        "testpreparations": Title.objects.filter(category__name="testpreparations"),
+        "active": "contactus"
     }
     return render(request, 'frontend/contactus.html', context)
 
@@ -74,13 +89,15 @@ def applyasstudent(request):
                 request, 'Thank you for applying.We will get back soon')
             # Redirect back to the current page
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
     context = {
         "form": form,
         "studies": Title.objects.filter(category__name="studyabroad"),
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
-        "testpreparations": Title.objects.filter(category__name="testpreparations")
+        "testpreparations": Title.objects.filter(category__name="testpreparations"),
+        "active": "apply"
     }
     return render(request, 'frontend/applyasstudent.html', context)
 
@@ -102,7 +119,9 @@ def applyasagent(request):
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
-        "testpreparations": Title.objects.filter(category__name="testpreparations")
+        "testpreparations": Title.objects.filter(category__name="testpreparations"),
+        "active": "apply"
+
     }
     return render(request, 'frontend/applyasagent.html', context)
 
@@ -136,6 +155,8 @@ def allblogs(request):
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
-        "testpreparations": Title.objects.filter(category__name="testpreparations")
+        "testpreparations": Title.objects.filter(category__name="testpreparations"),
+        "active": "blog"
+
     }
     return render(request, 'frontend/blogs.html', context)

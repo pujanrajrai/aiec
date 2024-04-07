@@ -29,13 +29,126 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  <style>
+    topbar {
+      background: #00044C;
+      height: 30px;
+      font-size: 14px;
+      transition: all 0.5s;
+      color: #fff;
+      padding: 0;
+    }
+    
+    .topbar .contact-info a {
+      color: #fff;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    
+    .topbar .contact-info a i {
+      font-style: normal;
+      line-height: 0;
+    }
+    
+    .topbar .contact-info a span {
+      padding-left: 5px;
+      transition: 0.3s;
+    }
+    
+    /* Hide text for icons in mobile view */
+    @media (max-width: 575px) {
+      .topbar .contact-info a span {
+        display: none;
+      }
+    }
+    @media (min-width: 576px) and (max-width: 991px) {
+      .topbar .contact-info a span {
+        font-size: 10px;
+    }}
+    
+    .topbar .social-links a {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 0;
+      transition: 0.3s;
+      margin-left: 20px;
+    }
+    
+    .topbar .social-links a:hover, .topbar .contact-info a:hover {
+      color: #fff;
+    }
+    
+    .topbar .social-links a i {
+      display: inline-block;
+    }
+    
+    
+    #header {
+      background: white;
+      transition: all 0.5s;
+      z-index: 997;
+      padding: 20px 0;
+    }
+    
+    #header.header-scrolled {
+      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+      padding: 12px 0;
+    }
+    
+    #header.header-inner-pages {
+      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    #header .logo {
+      font-size: 28px;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    
+    #header .logo a {
+      color: #556270;
+    }
+    
+    #header .logo img {
+      max-height: 40px;
+    }
+  </style>
 
 </head>
 
 <body>
-    
+  <div class="fixed-top">
   <!-- ======= Header ======= -->
-  <header id="header" style="font-weight:600;" class="fixed-top d-flex align-items-center">
+  <section id="topbar" class="topbar d-flex align-items-center" style="font-weight:500;font-size:12px;">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <!-- Email with icon and link -->
+        <a href="mailto:info@aarav.edu.np" class="d-flex align-items-center">
+          <i class="bi bi-envelope"></i><span>info@aarav.edu.np</span>
+        </a>
+        <!-- Phone with icon and link -->
+        <a href="tel:+01-5100927" class="d-flex align-items-center ms-4">
+          <i class="bi bi-telephone"></i><span>01-5100927</span>
+        </a>
+        <!-- Location with icon and link -->
+        <a href="https://maps.app.goo.gl/7eanG4gLALkxDjHt5" target="_blank" class="d-flex align-items-center ms-4">
+          <i class="bi bi-geo-alt"></i><span>Koteshwor, Kathmandu, Nepal Near at RBB Bank</span>
+        </a>
+      </div>
+      <div class="social-links d-md-flex align-items-center">
+        <a href="https://www.facebook.com/AIECPVTLTD" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/aiecpvtltd/" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/aiec-pvt-ltd/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </section>
+  <!-- End Top Bar -->
+  
+  <!-- ======= Header ======= -->
+  <header id="header" style="font-weight:600;" class=" d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
       <!-- <h1 class="logo me-auto"><a href="index.html">Sailor</a></h1> -->
@@ -44,41 +157,41 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="/" class="active">Home</a></li>
-          <li><a href="{% url 'frontend:aboutus' %}">About Us</a></li>
+          <li><a href="/" class="{% if active == 'home' %}active{%endif%}">Home</a></li>
+          <li><a href="{% url 'frontend:aboutus' %}"  class="{% if active == 'aboutus' %}active{%endif%}">About Us</a></li>
 
-          <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"  class="{% if active == 'services' %}active{%endif%}"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
             {% for service in services%}
-              <li><a href="{% url 'frontend:title' service.pk%}">{{service.title}}</a></li>
+              <li><a href="{% url 'frontend:title' service.pk%}" >{{service.title}}</a></li>
             {%endfor%}
-              
+      
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Study Abroad</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"  class="{% if active == 'studyabroad' %}active{%endif%}"><span>Study Abroad</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
                 {% for study in studies%}
-              <li><a href="{% url 'frontend:title' study.pk%}" style="display:block;">{{study.title|safe}}</a></li>
+              <li><a href="{% url 'frontend:title' study.pk%}"  class="" style="display:block;">{{study.title|safe}}</a></li>
             {%endfor%}
             </ul>
           </li>
 
-          <li class="dropdown"><a href="#"><span>Test Preparation</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"  class="{% if active == 'testpreparations' %}active{%endif%}"><span>Test Preparation</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
                 {% for test in testpreparations%}
-                <li><a href="{% url 'frontend:title' test.pk%}" style="display:block;">{{test.title|safe}}</a></li>
+                <li><a href="{% url 'frontend:title' test.pk%}"  class="" style="display:block;">{{test.title|safe}}</a></li>
               {%endfor%}
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Apply</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#" class="{% if active == 'apply' %}active{%endif%}"><span>Apply</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="{% url 'frontend:applyasstudent' %}">Apply as a Student</a></li>
               <li><a href="{% url 'frontend:applyasagent' %}">Apply as an Agent</a></li>
             </ul>
           </li>
-          <li><a href="{% url 'frontend:allblogs'%}">Blog</a></li>
+          <li><a href="{% url 'frontend:allblogs'%}" class="{% if active == 'blog' %}active{%endif%}">Blog</a></li>
 
-          <li><a href="{% url 'frontend:contactus'%}">Contact</a></li>
+          <li><a href="{% url 'frontend:contactus'%}" class="{% if active == 'contactus' %}active{%endif%}">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -86,6 +199,7 @@
     </div>
   </header>
   <!-- End Header -->
+</div>
 {% block body %}
 
 {%endblock%}
@@ -120,7 +234,7 @@
               <li><i class="bx bx-chevron-right"></i> <a href="{% url 'frontend:aboutus' %}">About us</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{% url 'frontend:allblogs' %}">blog</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="{% url 'frontend:contactus' %}">Contact Us</a></li>
-              {% comment %} <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li> {% endcomment %}
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'admindash:login' %}">Login</a></li>
             </ul>
           </div>
 
