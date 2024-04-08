@@ -48,6 +48,7 @@ class Title(models.Model):
         null=True
     )
     slug = models.SlugField(
+        max_length=300,
         blank=True
     )
 
