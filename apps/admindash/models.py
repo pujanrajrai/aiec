@@ -35,6 +35,11 @@ class Title(models.Model):
         null=True,
         blank=True
     )
+    files = models.FileField(
+        upload_to="files/",
+        null=True,
+        blank=True
+    )
     description = CKEditor5Field(
         'description',
         config_name='extends',

@@ -1,0 +1,56 @@
+{% extends 'datatable_base.html' %}
+{% load static %}
+{% block title %}Downloads{% endblock %}
+{% block pagetitle %}Downloads{% endblock %}
+{%block addbutton%}
+
+<a href="{% url 'admindash:pages:downloads:create' %}" class="btn btn-sm btn-primary">
+    <i class="fa fa-plus"></i>Add Downloads
+</a>
+{% endblock %}
+
+{% block table %}
+    <div class="box-content">
+        <!-- /.dropdown js__dropdown -->
+        <div class="table-responsive">
+            <table id="example" class="display compact nowrap" style="width:100%">
+                <thead>
+                <tr>
+                    <th>SN No</th>
+                    <th>Title </th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>SN No</th>
+                        <th>Title </th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for download in downloads %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{ download.title }}</td>
+               <td>
+                            <form>
+                                <a href="{% url 'admindash:pages:downloads:update' download.id %}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Update</a>
+                                <a href="{% url 'admindash:pages:downloads:delete' download.id %}" class="btn btn-sm btn-danger" onclick="return confirmStatusChange()"><i class="fa fa-trash"></i>&nbsp;Delete</a>
+                            </form> 
+                        </td>
+                        
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        function confirmStatusChange() {
+            if (confirm('Are you sure ?')) {
+                return true;  // Proceed with the link
+            }
+            return false;  // Cancel the link
+        }
+    </script>
+{% endblock %}

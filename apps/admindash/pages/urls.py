@@ -28,6 +28,9 @@ urlpatterns = [
     path(
         'applyasagent/', include('admindash.pages.applyasagent.urls')
     ),
+    path(
+        'downloads/', include('admindash.pages.downloads.urls')
+    ),
 
 
 ]

@@ -160,3 +160,39 @@ def allblogs(request):
 
     }
     return render(request, 'frontend/blogs.html', context)
+
+
+def downloads(request):
+    download_list = Title.objects.filter(category__name="downloads")
+    paginator = Paginator(download_list, 9)  # Show 10 blogs per page
+
+    page = request.GET.get('page')
+    try:
+        downloads = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        downloads = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        downloads = paginator.page(paginator.num_pages)
+
+    # Calculate the range of page numbers to display
+    current_page = downloads.number
+    total_pages = paginator.num_pages
+    start_page = max(1, current_page - 2)
+    end_page = min(total_pages, current_page + 2)
+
+    page_range = range(start_page, end_page + 1)
+
+    context = {
+        'downloads': downloads,
+        'page_range': page_range,
+        "studies": Title.objects.filter(category__name="studyabroad"),
+        "services": Title.objects.filter(category__name="services"),
+        "partners": Title.objects.filter(category__name="partners"),
+        "stories": Title.objects.filter(category__name="stories"),
+        "testpreparations": Title.objects.filter(category__name="testpreparations"),
+        "active": "downloads"
+
+    }
+    return render(request, 'frontend/downloads.html', context)

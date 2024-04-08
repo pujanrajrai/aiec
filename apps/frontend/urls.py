@@ -23,5 +23,8 @@ urlpatterns = [
     path(
         "applyasagent/", views.applyasagent, name="applyasagent"
     ),
+    path(
+        "downloads/", views.downloads, name="downloads"
+    ),
 
 ]
