@@ -5,9 +5,7 @@ urlpatterns = [
     path(
         "", views.home, name="home"
     ),
-    path(
-        "title/<str:pk>", views.title, name="title"
-    ),
+
     path(
         "aboutus/", views.aboutus, name="aboutus"
     ),
@@ -25,6 +23,9 @@ urlpatterns = [
     ),
     path(
         "downloads/", views.downloads, name="downloads"
+    ),
+    path(
+        "<str:slug>/", views.title, name="title"
     ),
 
 ]

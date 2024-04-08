@@ -15,7 +15,7 @@
                     <div class="container">
                         <h2 class="animate__animated animate__fadeInDown study">{{study.title|safe}}</h2>
                         <p class="animate__animated animate__fadeInUp">{{study.quoatation}}</p>
-                        <a href="{% url 'frontend:title' study.pk %}"
+                        <a href="{% url 'frontend:title' study.slug %}"
                             class="btn-get-started animate__animated animate__fadeInUp scrollto">Learn More</a>
                     </div>
                 </div>
@@ -105,10 +105,10 @@
                                 class="img-fluid">{%endif%}
 
                         </div>
-                        <h3><a href="{% url 'frontend:title' study.pk %}"
+                        <h3><a href="{% url 'frontend:title' study.slug %}"
                                 class="stretched-link">{{study.title|safe}}</a></h3>
                         <p>
-                            <a href="{% url 'frontend:title' study.pk %}" style="color: black;">
+                            <a href="{% url 'frontend:title' study.slug %}" style="color: black;">
                                 {{study.description|truncatewords_html:30|striptags|safe }}</a>
                         </p>
                     </div>

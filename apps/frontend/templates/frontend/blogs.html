@@ -36,7 +36,7 @@
                         <div class="card-img">
                             {% if blog.image %}<img src="{{blog.image.url}}" alt="" class="img-fluid">{%endif%}
                         </div>
-                        <h3><a href="{% url 'frontend:title' blog.pk %}" class="stretched-link">{{blog.title|safe}}</a></h3>
+                        <h3><a href="{% url 'frontend:title' blog.slug %}" class="stretched-link">{{blog.title|safe}}</a></h3>
                         <p>
                         {{ blog.description|truncatewords_html:30|striptags|safe }}
                         </p>

@@ -19,8 +19,8 @@ def home(request):
     return render(request, 'frontend/home.html', context)
 
 
-def title(request, pk):
-    title = Title.objects.get(pk=pk)
+def title(request, slug):
+    title = Title.objects.get(slug=slug)
     active = "null"
     if title.category.name == "testpreparations":
         active = "testpreparations"

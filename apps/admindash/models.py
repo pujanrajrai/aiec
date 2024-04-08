@@ -1,3 +1,4 @@
+from django.utils.text import slugify
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
 
@@ -46,6 +47,16 @@ class Title(models.Model):
         blank=True,
         null=True
     )
+    slug = models.SlugField(
+        blank=True
+    )
+
+    def save(self, *args, **kwargs):
+        # if not self.slug:
+        title_without_span = self.title.replace(
+            "span", "")  # Removing "span" from the title
+        self.slug = slugify(f"{title_without_span}-{self.pk}")
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
