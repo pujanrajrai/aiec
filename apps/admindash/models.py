@@ -52,12 +52,12 @@ class Title(models.Model):
         blank=True
     )
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            title_without_span = self.title.replace(
-                "span", "")  # Removing "span" from the title
-            self.slug = slugify(f"{title_without_span}")
-            super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not self.slug:
+    #         title_without_span = self.title.replace(
+    #             "span", "")  # Removing "span" from the title
+    #         self.slug = slugify(f"{title_without_span}")
+    #         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
