@@ -57,7 +57,7 @@ class Title(models.Model):
             title_without_span = self.title.replace(
                 "span", "")  # Removing "span" from the title
             self.slug = slugify(f"{title_without_span}")
-            super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

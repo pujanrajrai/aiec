@@ -49,9 +49,9 @@
                     <img src="{% static 'assets/img/aboutus.jpeg' %}" class="mx-auto d-block" style="max-width: 100%;">
                 </div>
 
-                <div class="col-lg-6 pt-4 pt-lg-0" style="text-align: justify;">
-                    <h2 class="align-items-center d-flex">ABOUT AIEC</h2>
-                    <p>
+                <div class="col-lg-6" style="text-align: justify;">
+                    <h2 class="align-items-center d-flex" style="font-size:30px;">ABOUT AIEC</h2>
+                    <p style="margin-top:-15px;">
                         Aarav International Education Consultancy Pvt. Ltd. (AIEC) trading as AIEC is one of the leading
                         education and career consultants in Nepal which aims to support Nepalese students to access the
                         globally recognized degrees on abroad.
@@ -62,12 +62,11 @@
                         SAT, TOEFL, OET and Japanese Language with the well-equipped classes, best instructors & mock
                         tests.
                     </p>
-
-                    <p>
+                    {% comment %} <p style="">
                         We do student, dependent & visitor visas and we also support the students with the internship
                         placements on abroad and required part-time job trainings.
                         We do support for consultation, admission, documentation, interview & visa.
-                    </p>
+                    </p> {% endcomment %}
                     <div>
                         <a href="{% url 'frontend:aboutus' %}"
                             style="cursor: pointer; background:#02044C;padding:10px;color:white; border-radius: 3px;font-size: 14px;">
@@ -131,7 +130,7 @@
                 <div class="col-md-6">
                     <div class="icon-box">
                         <img src="{{service.secondary_image.url}}" alt="Icon">
-                        <h4><a href="{% url 'frontend:title' service.pk%}">{{service.title}}</a></h4>
+                        <h4><a href="{% url 'frontend:title' service.slug%}">{{service.title}}</a></h4>
                         <p>{{service.quoatation}}
                         </p>
                     </div>
