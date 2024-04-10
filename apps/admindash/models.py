@@ -13,16 +13,34 @@ class Category(models.Model):
         return self.name
 
 
+class SubCategory(models.Model):
+    name = models.CharField(
+        max_length=100,
+        unique=True
+    )
+
+    def __str__(self):
+        return self.name
+
+
 class Title(models.Model):
     category = models.ForeignKey(
         Category,
         on_delete=models.PROTECT
+    )
+    sub_category = models.ForeignKey(
+        SubCategory,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        verbose_name="Select Download Category"
     )
     image = models.ImageField(
         upload_to="images/",
         blank=True,
         null=True
     )
+
     secondary_image = models.ImageField(
         upload_to="secondary_image/",
         blank=True,
@@ -51,12 +69,17 @@ class Title(models.Model):
         max_length=300,
         blank=True
     )
+    link = models.URLField(
+        max_length=100,
+        null=True,
+        blank=True
+    )
 
     def save(self, *args, **kwargs):
         if not self.slug:
             title_without_span = self.title.replace(
                 "span", "")  # Removing "span" from the title
-            self.slug = slugify(f"{title_without_span}")
+            self.slug = slugify(f"{title_without_span}-{self.pk}")
         super().save(*args, **kwargs)
 
     def __str__(self):

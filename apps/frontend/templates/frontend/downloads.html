@@ -29,22 +29,32 @@
             </div>
 
             <div class="row gy-4" style="text-align: justify;">
-                {% for download in downloads %}
+                {% regroup downloads by sub_category as subcategory_list %}
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-img">
-                            {% if download.image %}<img src="{{download.image.url}}" style="height:300px;width:400px;objective-fit:cover" alt="" class="">{%endif%}
-                        </div>
-                        <h3>{{download.title|safe}}</h3>
-                        <p>
-                            <a href="{{download.files.url}}" download  style="cursor: pointer; background:#02044C;padding:10px;color:white; border-radius: 3px;font-size: 14px;">
-                                Download
-                            </a>
-                        </p>
+{% for subcategory in subcategory_list %}
+    <div class="row">
+        <h2 class="align-items-center d-flex" style="font-size:30px;margin-top:50px;">{{ subcategory.grouper }}</h2>
+
+        {% for download in subcategory.list %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card">
+                    <div class="card-img">
+                        {% if download.image %}
+                            <img src="{{ download.image.url }}" style="height:300px;width:400px;object-fit:cover" alt="">
+                        {% endif %}
                     </div>
-                </div><!-- End Card Item -->
-                {% endfor %}
+                    <h3>{{ download.title|safe }}</h3>
+                    <p>
+                        <a href="{{ download.files.url }}" download style="cursor: pointer; background:#02044C;padding:10px;color:white; border-radius: 3px;font-size: 14px;">
+                            Download
+                        </a>
+                    </p>
+                </div>
+            </div><!-- End Card Item -->
+        {% endfor %}
+    </div><!-- End Row -->
+{% endfor %}
+
                 <!-- Pagination -->
                 <div class="d-flex justify-content-center">
                     <nav aria-label="Page navigation">
@@ -62,7 +72,7 @@
                             {% endif %}
                         </ul>
                     </nav>
-                </div>
+                </div> 
             </div>
             
         </div>

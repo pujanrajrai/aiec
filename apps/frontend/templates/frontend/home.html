@@ -83,15 +83,13 @@
     <!-- End About Section -->
 
     <!-- ======= Explore Study ======= -->
-
     <section id="explore-study" class="explore-study pt-0">
         <div class="container" data-aos="fade-up">
 
             <div class="section-header">
                 <h2 style="font-weight: 700;
             font-size: 42px;
-            line-height: 60px; margin-bottom: 40px;">Explore Your Study Abroad Options</h2>
-
+            line-height: 60px; margin-bottom: 40px;">Study Abroad Options</h2>
             </div>
 
             <div class="row gy-4" style="text-align: justify;">
@@ -152,7 +150,13 @@
                 <div class="partners-slider swiper">
                     <div class="swiper-wrapper align-items-center">
                         {% for partner in partners %}
-                        <div class="swiper-slide"><img src="{{partner.image.url}}" class="img-fluid" alt="">
+                        <div class="swiper-slide">
+                            {% if partner.link %}
+<a href="{{partner.link}}" target="_blank">
+                            {%endif%}   
+                            <img src="{{partner.image.url}}" class="img-fluid" alt="">
+                            {% if partner.link %}
+</a>                            {%endif%}
                         </div>
                         {%endfor%}
 

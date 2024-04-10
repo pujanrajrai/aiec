@@ -163,8 +163,9 @@ def allblogs(request):
 
 
 def downloads(request):
-    download_list = Title.objects.filter(category__name="downloads")
-    paginator = Paginator(download_list, 9)  # Show 10 blogs per page
+    download_list = Title.objects.filter(
+        category__name="downloads").order_by('sub_category')
+    paginator = Paginator(download_list, 30)  # Show 10 blogs per page
 
     page = request.GET.get('page')
     try:
