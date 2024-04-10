@@ -76,11 +76,14 @@ class Title(models.Model):
     )
 
     def save(self, *args, **kwargs):
+        if not self.pk:  # Object is being saved for the first time
+            super().save(*args, **kwargs)  # Call save method to generate pk
         if not self.slug:
-            title_without_span = self.title.replace(
-                "span", "")  # Removing "span" from the title
+            title_without_span = self.title.replace("span", "")
             self.slug = slugify(f"{title_without_span}-{self.pk}")
-        super().save(*args, **kwargs)
+            super().save(*args, **kwargs)  # Call save again to update slug
+        else:
+            super().save(*args, **kwargs)  # If slug already exists, save as usual
 
     def __str__(self):
         return self.title
