@@ -46,9 +46,9 @@
                 <div class="col-md-6">
                     <div class="icon-box">
                         <img src="{{service.secondary_image.url}}" alt="Icon">
-                        <h4><a href="{% url 'frontend:title' service.pk%}">{{service.title}}</a></h4>
-                        <p>{{service.quoatation}}
-                        </p>
+                        <h4><a href="{% url 'frontend:title' service.slug%}">{{service.title}}</a></h4>
+                        <a href="{% url 'frontend:title' service.slug%}" style="color:black;"><p>{{service.quoatation}}
+                        </p></a>
                     </div>
                 </div>
                 {%endif%}
