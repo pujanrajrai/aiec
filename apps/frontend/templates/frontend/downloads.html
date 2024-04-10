@@ -27,52 +27,19 @@
             line-height: 60px; margin-bottom: 40px;"></h2>
 
             </div>
-
             <div class="row gy-4" style="text-align: justify;">
-                {% regroup downloads by sub_category as subcategory_list %}
-
-{% for subcategory in subcategory_list %}
-    <div class="row">
-        <h2 class="align-items-center d-flex" style="font-size:30px;margin-top:50px;">{{ subcategory.grouper }}</h2>
-
-        {% for download in subcategory.list %}
-            <div class="col-lg-4 col-md-6">
-                <div class="card">
-                    <div class="card-img">
-                        {% if download.image %}
-                            <img src="{{ download.image.url }}" style="height:300px;width:400px;object-fit:cover" alt="">
-                        {% endif %}
-                    </div>
-                    <h3>{{ download.title|safe }}</h3>
-                    <p>
-                        <a href="{{ download.files.url }}" download style="cursor: pointer; background:#02044C;padding:10px;color:white; border-radius: 3px;font-size: 14px;">
-                            Download
+                {% for cat in category %}
+                
+                    <div class="col-lg-3 col-md-4"><a href="{% url 'frontend:downloads_details' cat.name %}">
+                        <div class="card text-center"> 
+                        <a href="{% url 'frontend:downloads_details' cat.name %}"  style="cursor: pointer; background:#02044C;padding:10px;color:white; border-radius: 3px;font-size: 14px;">
+                            {{cat.name}}
                         </a>
-                    </p>
-                </div>
-            </div><!-- End Card Item -->
-        {% endfor %}
-    </div><!-- End Row -->
-{% endfor %}
-
-                <!-- Pagination -->
-                <div class="d-flex justify-content-center">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            {% if download.has_previous %}
-                            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
-                            <li class="page-item"><a class="page-link" href="?page={{ blogs.previous_page_number }}">Previous</a></li>
-                            {% endif %}
-                            {% for i in page_range %}
-                                <li class="page-item{% if blogs.number == i %} active{% endif %}"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                            {% endfor %}
-                            {% if download.has_next %}
-                            <li class="page-item"><a class="page-link" href="?page={{ blogs.next_page_number }}">Next</a></li>
-                            <li class="page-item"><a class="page-link" href="?page={{ blogs.paginator.num_pages }}">Last</a></li>
-                            {% endif %}
-                        </ul>
-                    </nav>
-                </div> 
+                    </div>
+                </a>
+            </div>
+                {% endfor %}
+                
             </div>
             
         </div>

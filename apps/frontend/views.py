@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
-from admindash.models import Category, Title
+from admindash.models import Category, Title, SubCategory
 from .forms import ContactForm, ApplyAsStudentForm, ApplyAsAgentForm
 # Create your views here.
 from django.contrib import messages
@@ -127,7 +127,8 @@ def applyasagent(request):
 
 
 def allblogs(request):
-    blog_list = Title.objects.filter(category__name="blogs")
+    blog_list = Title.objects.filter(
+        category__name="blogs").order_by('-pk')
     paginator = Paginator(blog_list, 9)  # Show 10 blogs per page
 
     page = request.GET.get('page')
@@ -163,40 +164,56 @@ def allblogs(request):
 
 
 def downloads(request):
-    download_list = Title.objects.filter(
-        category__name="downloads").order_by('sub_category')
-    paginator = Paginator(download_list, 30)  # Show 10 blogs per page
-
-    page = request.GET.get('page')
-    try:
-        downloads = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        downloads = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        downloads = paginator.page(paginator.num_pages)
-
-    # Calculate the range of page numbers to display
-    current_page = downloads.number
-    total_pages = paginator.num_pages
-    start_page = max(1, current_page - 2)
-    end_page = min(total_pages, current_page + 2)
-
-    page_range = range(start_page, end_page + 1)
-
+    category = SubCategory.objects.all()
     context = {
-        'downloads': downloads,
-        'page_range': page_range,
-        "studies": Title.objects.filter(category__name="studyabroad"),
-        "services": Title.objects.filter(category__name="services"),
-        "partners": Title.objects.filter(category__name="partners"),
-        "stories": Title.objects.filter(category__name="stories"),
-        "testpreparations": Title.objects.filter(category__name="testpreparations"),
-        "active": "downloads"
-
+        "category": category
     }
     return render(request, 'frontend/downloads.html', context)
+
+
+def downloads_details(request, sub_category):
+    context = {
+        "downloads": Title.objects.filter(
+            category__name="downloads").filter(sub_category__name=sub_category).order_by('pk'),
+        "sub_category": sub_category
+    }
+    return render(request, 'frontend/downloads_details.html', context)
+
+# def downloads(request):
+#     download_list = Title.objects.filter(
+#         category__name="downloads").order_by('sub_category')
+#     paginator = Paginator(download_list, 30)  # Show 10 blogs per page
+
+#     page = request.GET.get('page')
+#     try:
+#         downloads = paginator.page(page)
+#     except PageNotAnInteger:
+#         # If page is not an integer, deliver first page.
+#         downloads = paginator.page(1)
+#     except EmptyPage:
+#         # If page is out of range (e.g. 9999), deliver last page of results.
+#         downloads = paginator.page(paginator.num_pages)
+
+#     # Calculate the range of page numbers to display
+#     current_page = downloads.number
+#     total_pages = paginator.num_pages
+#     start_page = max(1, current_page - 2)
+#     end_page = min(total_pages, current_page + 2)
+
+#     page_range = range(start_page, end_page + 1)
+
+#     context = {
+#         'downloads': downloads,
+#         'page_range': page_range,
+#         "studies": Title.objects.filter(category__name="studyabroad"),
+#         "services": Title.objects.filter(category__name="services"),
+#         "partners": Title.objects.filter(category__name="partners"),
+#         "stories": Title.objects.filter(category__name="stories"),
+#         "testpreparations": Title.objects.filter(category__name="testpreparations"),
+#         "active": "downloads"
+
+#     }
+#     return render(request, 'frontend/downloads.html', context)
 
 
 def admin(request):
