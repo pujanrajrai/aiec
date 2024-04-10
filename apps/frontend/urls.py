@@ -5,7 +5,9 @@ urlpatterns = [
     path(
         "", views.home, name="home"
     ),
-
+    path(
+        'admin/', views.admin, name="login"
+    ),
     path(
         "aboutus/", views.aboutus, name="aboutus"
     ),
@@ -27,5 +29,6 @@ urlpatterns = [
     path(
         "<str:slug>/", views.title, name="title"
     ),
+
 
 ]

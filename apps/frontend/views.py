@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from admindash.models import Category, Title
 from .forms import ContactForm, ApplyAsStudentForm, ApplyAsAgentForm
 # Create your views here.
@@ -196,3 +196,7 @@ def downloads(request):
 
     }
     return render(request, 'frontend/downloads.html', context)
+
+
+def admin(request):
+    return redirect("admindash:login")
