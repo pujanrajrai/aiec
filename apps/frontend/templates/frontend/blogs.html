@@ -34,7 +34,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-img">
-                            {% if blog.image %}<img src="{{blog.image.url}}" alt="" class="img-fluid">{%endif%}
+                            {% if blog.image %}<img src="{{blog.image.url}}" style="height:272px;width:100%;object-fit:cover;" alt="" class="img-fluid">{%endif%}
                         </div>
                         <h3><a href="{% url 'frontend:title' blog.slug %}" class="stretched-link">{{blog.title|safe}}</a></h3>
                         <p>
