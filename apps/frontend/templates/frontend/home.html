@@ -212,7 +212,7 @@
                                 return txt.value;
                             }
                             // Assuming "story.description" contains the HTML content
-                            var description = "{{story.description|truncatewords:50}}";
+                            var description = "{{story.description|truncatewords:45}}";
                             var spanElement = document.getElementById("fifty-words{{forloop.counter}}"); // Get the span element by ID
                             if (spanElement) {
                                 var decodedDescription = decodeHtml(description); // Decode HTML entities
@@ -244,7 +244,7 @@
                             }
                         </script>
                        
-                        {% if story.description|wordcount > 50 %}
+                        {% if story.description|wordcount > 45 %}
                             <br>
                             <a href="#" class="read-more" data-toggle-id="fifty-words{{forloop.counter}}" data-toggle-full-id="full-words{{forloop.counter}}">Read more</a>
                         {% endif %}
