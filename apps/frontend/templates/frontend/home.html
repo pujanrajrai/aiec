@@ -2,6 +2,15 @@
 {%load static%}
 {% block body %}
 
+<style>
+    /* Resetting default styles for <p> tag */
+    p {
+      margin: 0;
+      padding: 0;
+      /* Add any other styles you want to reset */
+    }
+  </style>
+
 <!-- ======= Hero Section Carasouel======= -->
 <section id="hero">
     <div id="heroCarousel" data-bs-interval="2500" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -202,40 +211,38 @@
                                 txt.innerHTML = html;
                                 return txt.value;
                             }
-                        
                             // Assuming "story.description" contains the HTML content
                             var description = "{{story.description|truncatewords:50}}";
-                        
                             var spanElement = document.getElementById("fifty-words{{forloop.counter}}"); // Get the span element by ID
                             if (spanElement) {
                                 var decodedDescription = decodeHtml(description); // Decode HTML entities
                                 var descriptionWithoutPTags = decodedDescription.replace(/<\/?p>/g, '');
-                                spanElement.innerHTML = descriptionWithoutPTags;                             } else {
+                                spanElement.innerHTML = descriptionWithoutPTags;
+                            } else {
                                 console.error("Span element not found.");
                             }
                         </script>
                         <span id="full-words{{forloop.counter}}" style="display:none" class="description"></span>
-<script>
-    // Function to decode HTML entities
-    function decodeHtml(html) {
-        var txt = document.createElement("textarea");
-        txt.innerHTML = html;
-        return txt.value;
-    }
+                        <script>
+                            // Function to decode HTML entities
+                            function decodeHtml(html) {
+                                var txt = document.createElement("textarea");
+                                txt.innerHTML = html;
+                                return txt.value;
+                            }
+                            // Assuming "story.description" contains the HTML content
+                            var description = "{{story.description}}";
 
-    // Assuming "story.description" contains the HTML content
-    var description = "{{story.description}}";
-
-    var spanElement = document.getElementById("full-words{{forloop.counter}}"); // Get the span element by ID
-    if (spanElement) {
-        var decodedDescription = decodeHtml(description); // Decode HTML entities
-        var descriptionWithoutPTags = decodedDescription.replace(/<\/?p>/g, '');
-        spanElement.innerHTML = descriptionWithoutPTags;            
-        
-    } else {
-        console.error("Span element not found.");
-    }
-</script>
+                            var spanElement = document.getElementById("full-words{{forloop.counter}}"); // Get the span element by ID
+                            if (spanElement) {
+                                var decodedDescription = decodeHtml(description); // Decode HTML entities
+                                var descriptionWithoutPTags = decodedDescription.replace(/<\/?p>/g, '');
+                                spanElement.innerHTML = descriptionWithoutPTags;            
+                                
+                            } else {
+                                console.error("Span element not found.");
+                            }
+                        </script>
                        
                         {% if story.description|wordcount > 50 %}
                             <br>
