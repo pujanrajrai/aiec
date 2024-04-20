@@ -183,34 +183,101 @@
     line-height: 60px;">Success Stories of Our Students</span>
     </section>
     <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials" >
-        <div class="container">
-            <div class="section-header">
-                {% comment %} <h2 style="font-weight: 700;
-            font-size: 42px;
-            line-height: 60px; margin-bottom: 40px;">Sucess Stories of Our Students</h2> {% endcomment %}
-            </div>
-
-            <div class="testimonials-slider swiper">
-                <div class="swiper-wrapper" style="text-align: center;">
-                    {%for story in stories%}
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                            {{story.description|safe}}
-                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            <h3>{{story.title}}</h3>
-                            <h4>{{story.quoatation}}</h4>
-                        </div>
-                    </div><!-- End testimonial item -->
-                    {%endfor%}
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
+    <section id="testimonials" class="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <!-- <h2 style="font-weight: 700; font-size: 42px; line-height: 60px; margin-bottom: 40px;">Success Stories of Our Students</h2> -->
         </div>
-    </section>
-    <!-- End Testimonials Section -->
-</main>
+        <div class="testimonials-slider swiper">
+            <div class="swiper-wrapper" style="text-align: center;">
+                {% for story in stories %}
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                        <span id="fifty-words{{forloop.counter}}" class="description"></span>
+                        <script>
+                            // Function to decode HTML entities
+                            function decodeHtml(html) {
+                                var txt = document.createElement("textarea");
+                                txt.innerHTML = html;
+                                return txt.value;
+                            }
+                        
+                            // Assuming "story.description" contains the HTML content
+                            var description = "{{story.description|truncatewords:50}}";
+                        
+                            var spanElement = document.getElementById("fifty-words{{forloop.counter}}"); // Get the span element by ID
+                            if (spanElement) {
+                                var decodedDescription = decodeHtml(description); // Decode HTML entities
+                                var descriptionWithoutPTags = decodedDescription.replace(/<\/?p>/g, '');
+                                spanElement.innerHTML = descriptionWithoutPTags;                             } else {
+                                console.error("Span element not found.");
+                            }
+                        </script>
+                        <span id="full-words{{forloop.counter}}" style="display:none" class="description"></span>
+<script>
+    // Function to decode HTML entities
+    function decodeHtml(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
 
+    // Assuming "story.description" contains the HTML content
+    var description = "{{story.description}}";
+
+    var spanElement = document.getElementById("full-words{{forloop.counter}}"); // Get the span element by ID
+    if (spanElement) {
+        var decodedDescription = decodeHtml(description); // Decode HTML entities
+        var descriptionWithoutPTags = decodedDescription.replace(/<\/?p>/g, '');
+        spanElement.innerHTML = descriptionWithoutPTags;            
+        
+    } else {
+        console.error("Span element not found.");
+    }
+</script>
+                       
+                        {% if story.description|wordcount > 50 %}
+                            <br>
+                            <a href="#" class="read-more" data-toggle-id="fifty-words{{forloop.counter}}" data-toggle-full-id="full-words{{forloop.counter}}">Read more</a>
+                        {% endif %}
+                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        <h3>{{ story.title }}</h3>
+                        <h4>{{ story.quotation }}</h4>
+                    </div>
+                </div><!-- End testimonial item -->
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+    <!-- End Testimonials Section -->
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var readMoreLinks = document.querySelectorAll(".read-more");
+            readMoreLinks.forEach(function(link) {
+                link.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    var toggleId = this.getAttribute("data-toggle-id");
+                    var toggleFullId = this.getAttribute("data-toggle-full-id");
+                    var fiftyWords = document.getElementById(toggleId);
+                    var fullWords = document.getElementById(toggleFullId);
+    
+                    if (fiftyWords.style.display !== "none") {
+                        fiftyWords.style.display = "none";
+                        fullWords.style.display = "inline";
+                        this.textContent = "Read less";
+                    } else {
+                        fiftyWords.style.display = "inline";
+                        fullWords.style.display = "none";
+                        this.textContent = "Read more";
+                    }
+                });
+            });
+        });
+</script>
+</main>
 <!-- End Services Section -->
+
 {%endblock%}

@@ -166,6 +166,11 @@ def allblogs(request):
 def downloads(request):
     category = SubCategory.objects.all()
     context = {
+        "studies": Title.objects.filter(category__name="studyabroad"),
+        "services": Title.objects.filter(category__name="services"),
+        "partners": Title.objects.filter(category__name="partners"),
+        "stories": Title.objects.filter(category__name="stories"),
+        "testpreparations": Title.objects.filter(category__name="testpreparations"),
         "category": category
     }
     return render(request, 'frontend/downloads.html', context)
@@ -175,7 +180,12 @@ def downloads_details(request, sub_category):
     context = {
         "downloads": Title.objects.filter(
             category__name="downloads").filter(sub_category__name=sub_category).order_by('pk'),
-        "sub_category": sub_category
+        "sub_category": sub_category,
+        "studies": Title.objects.filter(category__name="studyabroad"),
+        "services": Title.objects.filter(category__name="services"),
+        "partners": Title.objects.filter(category__name="partners"),
+        "stories": Title.objects.filter(category__name="stories"),
+        "testpreparations": Title.objects.filter(category__name="testpreparations"),
     }
     return render(request, 'frontend/downloads_details.html', context)
 
