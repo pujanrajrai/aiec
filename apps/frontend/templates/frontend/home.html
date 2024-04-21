@@ -235,11 +235,12 @@
                             }
                         </script>
                        
+                        
+                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                         {% if story.description|wordcount > 45 %}
                             <br>
                             <a href="#" class="read-more" data-toggle-id="fifty-words{{forloop.counter}}" data-toggle-full-id="full-words{{forloop.counter}}">Read more</a>
                         {% endif %}
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                         <h3>{{ story.title }}</h3>
                         <h4>{{ story.quotation }}</h4>
                     </div>
