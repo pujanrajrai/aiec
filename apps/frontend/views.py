@@ -13,6 +13,7 @@ def home(request):
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
+        "links": Title.objects.filter(category__name="links"),
         "testpreparations": Title.objects.filter(category__name="testpreparations"),
         "active": "home"
     }
@@ -35,6 +36,8 @@ def title(request, slug):
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
+        "links": Title.objects.filter(category__name="links"),
+
         "testpreparations": Title.objects.filter(category__name="testpreparations"),
         "title": title,
         "active": active
@@ -49,6 +52,8 @@ def aboutus(request):
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
         "testpreparations": Title.objects.filter(category__name="testpreparations"),
+        "links": Title.objects.filter(category__name="links"),
+
         "active": "aboutus"
 
     }
@@ -69,6 +74,8 @@ def contactus(request):
     context = {
         "form": form,
         "studies": Title.objects.filter(category__name="studyabroad"),
+        "links": Title.objects.filter(category__name="links"),
+
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
@@ -95,6 +102,8 @@ def applyasstudent(request):
         "studies": Title.objects.filter(category__name="studyabroad"),
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
+        "links": Title.objects.filter(category__name="links"),
+
         "stories": Title.objects.filter(category__name="stories"),
         "testpreparations": Title.objects.filter(category__name="testpreparations"),
         "active": "apply"
@@ -120,6 +129,8 @@ def applyasagent(request):
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
         "testpreparations": Title.objects.filter(category__name="testpreparations"),
+        "links": Title.objects.filter(category__name="links"),
+
         "active": "apply"
 
     }
@@ -157,6 +168,8 @@ def allblogs(request):
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
         "testpreparations": Title.objects.filter(category__name="testpreparations"),
+        "links": Title.objects.filter(category__name="links"),
+
         "active": "blog"
 
     }
@@ -171,6 +184,8 @@ def downloads(request):
         "partners": Title.objects.filter(category__name="partners"),
         "stories": Title.objects.filter(category__name="stories"),
         "testpreparations": Title.objects.filter(category__name="testpreparations"),
+        "links": Title.objects.filter(category__name="links"),
+
         "category": category
     }
     return render(request, 'frontend/downloads.html', context)
@@ -184,6 +199,8 @@ def downloads_details(request, sub_category):
         "studies": Title.objects.filter(category__name="studyabroad"),
         "services": Title.objects.filter(category__name="services"),
         "partners": Title.objects.filter(category__name="partners"),
+        "links": Title.objects.filter(category__name="links"),
+
         "stories": Title.objects.filter(category__name="stories"),
         "testpreparations": Title.objects.filter(category__name="testpreparations"),
     }

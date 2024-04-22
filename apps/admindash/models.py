@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.utils.text import slugify
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
@@ -96,7 +97,8 @@ class ContactUs(models.Model):
     phone_number = models.CharField(max_length=15)
     message = models.CharField(max_length=500)
     is_read = models.BooleanField(default=False)
-    created_date = models.DateTimeField(auto_now_add=True)
+    created_date = models.DateTimeField(
+        auto_now_add=True)
 
     class Meta:
         ordering = ['-created_date']
@@ -109,14 +111,17 @@ class ApplyAsStudent(models.Model):
     full_name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=20)
     email = models.EmailField()
-    date_of_birth = models.DateField()
-    faculty = models.CharField(max_length=100)
-    pass_out_year = models.CharField(max_length=4)
-    percentage = models.DecimalField(max_digits=5, decimal_places=2)
-    apply_for_country = models.CharField(max_length=100)
-    english_proficiency_test = models.CharField(max_length=100)
-    score = models.CharField(max_length=10)
-    remarks = models.TextField()
+    date_of_birth = models.DateField(blank=True, null=True)
+    faculty = models.CharField(max_length=100, blank=True, null=True)
+    pass_out_year = models.CharField(max_length=4, blank=True, null=True)
+    percentage = models.DecimalField(
+        max_digits=5, decimal_places=2, blank=True, null=True)
+    apply_for_country = models.CharField(
+        max_length=100, blank=True, null=True)
+    english_proficiency_test = models.CharField(
+        max_length=100, blank=True, null=True)
+    score = models.CharField(max_length=10, blank=True, null=True)
+    remarks = models.TextField(blank=True, null=True)
     is_read = models.BooleanField(default=False)
     create_date = models.DateTimeField(auto_now_add=True)
 
@@ -126,15 +131,17 @@ class ApplyAsStudent(models.Model):
 
 class ApplyAsAgent(models.Model):
     full_name = models.CharField(max_length=255)
-    education = models.CharField(max_length=100)
-    consultancy_name = models.CharField(max_length=100)
-    address = models.CharField(max_length=255)
+    education = models.CharField(max_length=100, blank=True, null=True)
+    consultancy_name = models.CharField(max_length=100, blank=True, null=True)
+    address = models.CharField(max_length=255, blank=True, null=True)
     phone_number = models.CharField(max_length=20)
     email = models.EmailField()
-    years_of_experience = models.CharField(max_length=50)
-    remarks = models.TextField()
-    is_read = models.BooleanField(default=False)
-    create_date = models.DateTimeField(auto_now_add=True)
+    years_of_experience = models.CharField(
+        max_length=50, blank=True, null=True)
+    remarks = models.TextField(blank=True, null=True)
+    is_read = models.BooleanField(default=False, blank=True, null=True)
+    created_date = models.DateTimeField(
+        auto_now_add=True)
 
     def __str__(self):
         return self.full_name

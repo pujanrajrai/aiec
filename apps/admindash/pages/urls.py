@@ -31,6 +31,8 @@ urlpatterns = [
     path(
         'downloads/', include('admindash.pages.downloads.urls')
     ),
-
+    path(
+        'links/', include('admindash.pages.links.urls')
+    ),
 
 ]

@@ -17,7 +17,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Lustria&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Lustra Text Bold'; /* Manually define font family name */
+      src: url({% static 'assets/fonts/lustra-text-bold.otf' %}) format('opentype');
+  }
+</style>
 
   <!-- Vendor CSS Files -->
   <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
@@ -213,8 +218,7 @@
           
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
-              <h3 style="font-family: Lustria;font-weight: bold;">AIEC PVT LTD</h3>
-              <p>
+              <h3 style="font-family: 'Lustra Text Bold', sans-serif;">AIEC PVT LTD</h3>              <p>
                 <a href="https://maps.app.goo.gl/7eanG4gLALkxDjHt5" target="_blank" style="color:white;"><i class="bi bi-geo-alt"></i><span>&nbsp;&nbsp;&nbsp;Koteshwor, Kathmandu <br></a>
 
                 <a href="tel:+01-5100927" style="color:white">
@@ -235,11 +239,9 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'frontend:aboutus' %}">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'frontend:allblogs' %}">Blog</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'frontend:contactus' %}">Contact Us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'frontend:downloads' %}">Downloads</a></li>
+              {% for link in links%}
+              <li><i class="bx bx-chevron-right"></i> <a  target="_blank" href="{{link.link}}">{{link.title}}</a></li>
+              {%endfor%}
             </ul>
           </div>
           <div class="col-lg-3 col-md-6 footer-links">
@@ -254,7 +256,7 @@
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Our Newsletter</h4>
             <p>Subscribe to our newsletter to receive emails about study abroad.</p>
-            <form action="" method="post">
+            <form action="#" method="get">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
 

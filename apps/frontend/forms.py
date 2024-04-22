@@ -64,21 +64,21 @@ class ApplyAsStudentForm(forms.ModelForm):
         attrs={'class': 'form-control', 'id': 'inputPhoneNumber'}))
     email = forms.EmailField(widget=forms.EmailInput(
         attrs={'class': 'form-control', 'id': 'inputEmail'}))
-    # date_of_birth = forms.DateField(widget=forms.DateInput(
-    #     attrs={'class': 'form-control', 'id': 'inputDateOfBirth'}))
-    faculty = forms.ChoiceField(choices=FACULTY_CHOICES, widget=forms.Select(
+    date_of_birth = forms.DateField(required=False, widget=forms.DateInput(
+        attrs={'class': 'form-control', 'type': "date", 'id': 'inputDateOfBirth'}))
+    faculty = forms.ChoiceField(choices=FACULTY_CHOICES, required=False, widget=forms.Select(
         attrs={'class': 'form-select', 'id': 'inputFaculty'}))
-    pass_out_year = forms.CharField(max_length=4, widget=forms.TextInput(
+    pass_out_year = forms.CharField(max_length=4, required=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'id': 'inputPassOutYear'}))
-    percentage = forms.DecimalField(max_digits=5, decimal_places=2, widget=forms.NumberInput(
+    percentage = forms.DecimalField(max_digits=5, decimal_places=2, required=False, widget=forms.NumberInput(
         attrs={'class': 'form-control', 'id': 'inputPercentage'}))
-    apply_for_country = forms.ChoiceField(choices=COUNTRY_CHOICES, widget=forms.Select(
+    apply_for_country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False, widget=forms.Select(
         attrs={'class': 'form-select', 'id': 'inputApplyForCountry'}))
-    english_proficiency_test = forms.ChoiceField(choices=ENGLISH_TEST_CHOICES, widget=forms.Select(
+    english_proficiency_test = forms.ChoiceField(choices=ENGLISH_TEST_CHOICES, required=False, widget=forms.Select(
         attrs={'class': 'form-select', 'id': 'inputEnglishProficiencyTest'}))
-    score = forms.CharField(max_length=10, widget=forms.TextInput(
+    score = forms.CharField(max_length=10, required=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'id': 'inputScore'}))
-    remarks = forms.CharField(widget=forms.Textarea(
+    remarks = forms.CharField(required=False, widget=forms.Textarea(
         attrs={'class': 'form-control', 'id': 'inputRemarks'}))
 
     class Meta:

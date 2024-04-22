@@ -85,6 +85,15 @@
             </li>
           </ul>
           <ul class="menu js__accordion">
+            <li class="{% if current == "links" %}current{%endif%}">
+              <a class=""  href="{% url 'admindash:pages:links:list' %}">
+                <i class="menu-icon material-symbols-outlined">
+                    newspaper
+                </i>
+                  <span>Links</span></a>
+            </li>
+          </ul>
+          <ul class="menu js__accordion">
             <li class="{% if current == "contactus" %}current{%endif%}">
               <a class=""  href="{% url 'admindash:pages:contactus:list' %}">
                 <i class="menu-icon material-symbols-outlined">

@@ -1,0 +1,27 @@
+{% extends 'form_base.html' %}
+{% load static %}
+{% block title %}Update Downloads{% endblock %}
+{% block pagetitle %}Update Downloads{% endblock %}
+{%block addbutton%}
+{%endblock%}
+{% block body %}
+
+<form method="post" onsubmit="myFunction()" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  {% for field in form %}
+  <div class="form-group col-md-12">
+      {{ field.label_tag }} {{ field }} 
+      {{ field.errors }}
+      {% if field.help_text %}
+          <p class="help">{{ field.help_text|safe }}</p>
+      {% endif %}
+  </div>
+{% endfor %}
+{{form.media}}
+<div style="float:right; padding:15px;">
+<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp;Update Downloads</button>
+</div>
+  </form>
+  
+{% endblock %}
