@@ -39,7 +39,7 @@
     {% endfor %}
 {% endif %}
                     {% csrf_token %}
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <label for="inputName5" class="form-label">Full Name</label>
                         {{ form.full_name }}
                     </div>
@@ -71,15 +71,15 @@
                         <label for="inputApplyForCountry" class="form-label">Apply For (Country)</label>
                         {{ form.apply_for_country }}
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <label for="inputEnglishProficiencyTest" class="form-label">English Proficiency Test</label>
                         {{ form.english_proficiency_test }}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="inputScore" class="form-label">Score</label>
                         {{ form.score }}
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <label for="inputRemarks" class="form-label">Remarks</label>
                         {{ form.remarks }}
                     </div>
