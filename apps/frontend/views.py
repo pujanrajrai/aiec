@@ -1,3 +1,4 @@
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from admindash.models import Category, Title, SubCategory
@@ -21,7 +22,7 @@ def home(request):
 
 
 def title(request, slug):
-    title = Title.objects.get(slug=slug)
+    title = get_object_or_404(Title, slug=slug)
     active = "null"
     if title.category.name == "testpreparations":
         active = "testpreparations"
