@@ -1,3 +1,4 @@
+from django.contrib.auth import logout as auth_logout
 from django.shortcuts import render, redirect
 from django.contrib import auth
 
@@ -29,3 +30,8 @@ def login(request):
             context['username'] = username
             return render(request, 'accounts/login.html', context)
     return render(request, 'login.html', context)
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect('/')
