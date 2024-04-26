@@ -27,11 +27,9 @@ urlpatterns = [
         "downloads/", views.downloads, name="downloads"
     ),
     path(
-        "downloads/<str:sub_category>", views.downloads_details, name="downloads_details"
+        "downloads/<str:sub_category>/", views.downloads_details, name="downloads_details"
     ),
     path(
         "<str:slug>/", views.title, name="title"
     ),
-
-
 ]
