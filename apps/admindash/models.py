@@ -19,6 +19,11 @@ class SubCategory(models.Model):
         max_length=100,
         unique=True
     )
+    image = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to="subcategory"
+    )
 
     def __str__(self):
         return self.name

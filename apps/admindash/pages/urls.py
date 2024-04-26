@@ -34,5 +34,8 @@ urlpatterns = [
     path(
         'links/', include('admindash.pages.links.urls')
     ),
+    path(
+        'sub_category/', include('admindash.pages.subcategory.urls')
+    ),
 
 ]
