@@ -12,10 +12,10 @@ def agent_applications(request):
     if search == "read":
         context["active_tab"] = "read"
         context["applications"] = ApplyAsAgent.objects.filter(
-            is_read=True).order_by('-create_date')
+            is_read=True).order_by('-created_date')
     else:
         context["applications"] = ApplyAsAgent.objects.filter(
-            is_read=False).order_by('-create_date')
+            is_read=False).order_by('-created_date')
         context["active_tab"] = "unread"
 
     return render(request, 'agent_applications/list.html', context)
