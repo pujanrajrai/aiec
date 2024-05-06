@@ -5,7 +5,7 @@ __pycache__/
 
 # Django stuff:
 *.log
-local_settings.py
+# local_settings.py
 db.sqlite3
 
 # Media files (usually user-uploaded)
@@ -64,5 +64,5 @@ ehthumbs_win7.db
 .vscode/
 passenger_wsgi.py
 
-local.py
+# local.py
 app.sock
