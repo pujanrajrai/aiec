@@ -29,8 +29,6 @@ DJANGO_APP = [
 THIRD_PARTY_APP = [
     'captcha',
     'django_ckeditor_5',
-
-
 ]
 
 INSTALLED_APPS += DJANGO_APP+THIRD_PARTY_APP
