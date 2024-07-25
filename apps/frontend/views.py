@@ -247,3 +247,7 @@ def downloads_details(request, sub_category):
 
 def admin(request):
     return redirect("admindash:login")
+
+
+def sitemap(request):
+    return render(request, 'sitemap.xml', content_type='application/xml')

@@ -6,6 +6,12 @@ urlpatterns = [
         "", views.home, name="home"
     ),
     path(
+        "sitemap/", views.sitemap, name="sitemap"
+    ),
+    path(
+        "sitemap.xml/", views.sitemap, name="sitemap"
+    ),
+    path(
         'admin/', views.admin, name="login"
     ),
     path(
